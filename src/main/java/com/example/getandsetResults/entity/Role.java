@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Role {
     @Id
     @GeneratedValue
-    private UUID idRole;
+    private Long idRole;
 
     @Column(nullable = false)
     private String roleName;
@@ -34,11 +34,11 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public UUID getIdRole() {
+    public Long getIdRole() {
         return idRole;
     }
 
-    public void setIdRole(UUID idRole) {
+    public void setIdRole(Long idRole) {
         this.idRole = idRole;
     }
 

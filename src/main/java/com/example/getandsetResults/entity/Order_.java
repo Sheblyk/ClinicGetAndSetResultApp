@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Order_ {
     @Id
     @GeneratedValue
-    private UUID idOrder;
+    private Long idOrder;
 
     @Column(nullable = false)
     private final Timestamp time = Timestamp.valueOf(LocalDateTime.now());
@@ -31,11 +31,11 @@ public class Order_ {
 
     public Order_(){}
 
-    public UUID getIdOrder() {
+    public Long getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(UUID idOrder) {
+    public void setIdOrder(Long idOrder) {
         this.idOrder = idOrder;
     }
 

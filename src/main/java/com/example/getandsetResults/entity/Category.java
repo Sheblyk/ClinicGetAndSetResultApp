@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Category {
     @Id
     @GeneratedValue
-    private UUID idCategory;
+    private Long idCategory;
 
     @Column(nullable = false)
     private String categoryName;
@@ -22,17 +22,17 @@ public class Category {
 
     public Category(){}
 
-    public Category(UUID idCategory, String categoryName, List<Analysis> analyses) {
+    public Category(Long idCategory, String categoryName, List<Analysis> analyses) {
         this.idCategory = idCategory;
         this.categoryName = categoryName;
         this.analyses = analyses;
     }
 
-    public UUID getIdCategory() {
+    public Long getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(UUID idCategory) {
+    public void setIdCategory(Long idCategory) {
         this.idCategory = idCategory;
     }
 

@@ -11,7 +11,7 @@ import java.util.UUID;
 public class Analysis {
     @Id
     @GeneratedValue
-    private UUID idAnalysis;
+    private Long idAnalysis;
 
     @Column(nullable = false)
     private String name;
@@ -31,11 +31,11 @@ public class Analysis {
 
     public Analysis(){}
 
-    public UUID getIdAnalysis() {
+    public Long getIdAnalysis() {
         return idAnalysis;
     }
 
-    public void setIdAnalysis(UUID idAnalysis) {
+    public void setIdAnalysis(Long idAnalysis) {
         this.idAnalysis = idAnalysis;
     }
 
@@ -71,7 +71,7 @@ public class Analysis {
         this.category = category;
     }
 
-    public Analysis(UUID idAnalysis, String name, String description, Double price, Category category) {
+    public Analysis(Long idAnalysis, String name, String description, Double price, Category category) {
         this.idAnalysis = idAnalysis;
         this.name = name;
         this.description = description;

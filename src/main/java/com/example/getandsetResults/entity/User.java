@@ -13,7 +13,7 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue
-    private UUID idUser;
+    private Long idUser;
 
     @Column(nullable = false)
     private String surname;
@@ -70,11 +70,11 @@ public class User {
                 .toHashCode();
     }
 
-    public UUID getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(UUID idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
 
