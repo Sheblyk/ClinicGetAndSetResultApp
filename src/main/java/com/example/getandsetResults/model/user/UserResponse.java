@@ -5,17 +5,17 @@ import com.example.getandsetResults.entity.User;
 import java.util.UUID;
 
 public class UserResponse {
-    private UUID idUser;
+    private Long idUser;
     private String surname;
     private String name;
     private Integer age;
     private String role;
 
-    public UUID getIdUser() {
+    public Long getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(UUID idUser) {
+    public void setIdUser(Long idUser) {
         this.idUser = idUser;
     }
 
@@ -51,7 +51,7 @@ public class UserResponse {
         this.role = role;
     }
 
-    public UserResponse(UUID idUser, String surname, String name, Integer age, String role) {
+    public UserResponse(Long idUser, String surname, String name, Integer age, String role) {
         this.idUser = idUser;
         this.surname = surname;
         this.name = name;
