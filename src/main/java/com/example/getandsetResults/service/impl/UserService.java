@@ -1,11 +1,12 @@
-package com.example.getandsetResults.service;
+package com.example.getandsetResults.service.impl;
 
-import com.example.getandsetResults.UserStoreException;
+import com.example.getandsetResults.AppException;
 import com.example.getandsetResults.entity.User;
 import com.example.getandsetResults.model.user.UserRequest;
 import com.example.getandsetResults.model.user.UserResponse;
 import com.example.getandsetResults.repository.RoleRepository;
 import com.example.getandsetResults.repository.UserRepository;
+import com.example.getandsetResults.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +40,7 @@ public class UserService implements IUserService {
 
     @Override
     public void update(Long id, UserRequest request) {
-        var user = userRepo.findById(id).orElseThrow(() -> UserStoreException.userNotFound(id));
+        var user = userRepo.findById(id).orElseThrow(() -> AppException.userNotFound(id));
         user.setName(request.getName());
         user.setSurname(request.getSurname());
         user.setAge(request.getAge());
