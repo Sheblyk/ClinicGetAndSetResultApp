@@ -4,19 +4,18 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Null;
 
 @Entity
 public class OrderHasAnalysis {
 
-@EmbeddedId
-private OrderHasAnalysisPK pk;
-
+    @EmbeddedId
+    private OrderHasAnalysisPK pk;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idOrder")
     @JoinColumn(name = "fk_order")
     private Order_ order_;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("idAnalysis")
@@ -25,7 +24,8 @@ private OrderHasAnalysisPK pk;
 
     private double result;
 
-    public OrderHasAnalysis() {}
+    public OrderHasAnalysis() {
+    }
 
     public OrderHasAnalysis(Order_ order_, Analysis analysis, double result) {
         this.order_ = order_;
@@ -55,6 +55,14 @@ private OrderHasAnalysisPK pk;
 
     public void setResult(double result) {
         this.result = result;
+    }
+
+    public OrderHasAnalysisPK getPk() {
+        return pk;
+    }
+
+    public void setPk(OrderHasAnalysisPK pk) {
+        this.pk = pk;
     }
 
     @Override

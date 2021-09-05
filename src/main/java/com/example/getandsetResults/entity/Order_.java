@@ -35,6 +35,22 @@ public class Order_ {
         this.idOrder = idOrder;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Double getPriceForOrder() {
+        return priceForOrder;
+    }
+
+    public void setPriceForOrder(Double priceForOrder) {
+        this.priceForOrder = priceForOrder;
+    }
+
     public Timestamp getTime() {
         return time;
     }
