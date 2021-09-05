@@ -3,8 +3,8 @@ package com.example.getandsetResults.entity;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Set;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Order_ {
@@ -18,12 +18,8 @@ public class Order_ {
     @Column(nullable = false)
     private Double priceForOrder;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "order_has_analysis",
-    joinColumns = @JoinColumn(name = "fk_analysis"),
-    inverseJoinColumns = @JoinColumn(name = "fk_order")
-    )
-    private Set<Analysis> analysis;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order_")
+    private List<OrderHasAnalysis> analysis = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idUser", nullable=false)
@@ -43,11 +39,11 @@ public class Order_ {
         return time;
     }
 
-    public Set<Analysis> getAnalysis() {
+    public List<OrderHasAnalysis> getAnalysis() {
         return analysis;
     }
 
-    public void setAnalysis(Set<Analysis> analysis) {
+    public void setAnalysis(List<OrderHasAnalysis> analysis) {
         this.analysis = analysis;
     }
 }

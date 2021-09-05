@@ -4,8 +4,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
-import java.util.Set;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Analysis {
@@ -26,8 +26,8 @@ public class Analysis {
     @JoinColumn(name="idCategory", nullable=false)
     private Category category;
 
-    @ManyToMany(mappedBy = "analysis")
-    private Set<Order_> orders;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "analysis")
+    private List<OrderHasAnalysis> analysis = new ArrayList<>();
 
     public Analysis(){}
 
