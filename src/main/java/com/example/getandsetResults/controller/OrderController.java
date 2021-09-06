@@ -3,12 +3,9 @@ package com.example.getandsetResults.controller;
 import com.example.getandsetResults.AppException;
 import com.example.getandsetResults.model.order.OrderResponse;
 import com.example.getandsetResults.service.IOrderService;
-import com.example.getandsetResults.service.impl.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/orders")
@@ -21,12 +18,15 @@ public class OrderController {
         this.orderService = iOrderService_;
     }
 
-    @GetMapping("/{idOrder}")
+    @GetMapping("/myOrders")
     public OrderResponse getOrderResult(@RequestParam Long idOrder){
-        OrderResponse orderResponse = orderService.find(idOrder);
-        if(orderResponse==null){
-           throw AppException.orderDoesNotExist(idOrder);
-        }
-        return orderResponse;
+        return orderService.find(idOrder)
+                .orElseThrow(() -> AppException.orderDoesNotExist(idOrder));
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/order")
+    public void update(@RequestParam Long idOrder, @RequestParam Long idAnalysis){
+
     }
 }

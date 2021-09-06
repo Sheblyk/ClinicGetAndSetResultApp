@@ -2,6 +2,8 @@ package com.example.getandsetResults.service;
 
 import com.example.getandsetResults.model.order.OrderResponse;
 
+import java.util.Optional;
+
 public interface IOrderService {
-    OrderResponse find(Long idOrder);
+    Optional<OrderResponse> find(Long idOrder);
 }

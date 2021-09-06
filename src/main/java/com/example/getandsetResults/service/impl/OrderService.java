@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -22,8 +23,8 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderResponse find(Long idOrder) {
+    public Optional<OrderResponse> find(Long idOrder) {
         List<OrderHasAnalysis> res = orderRepo.find(idOrder);
-        return OrderResponse.convert(res);
+        return Optional.of(OrderResponse.convert(res));
     }
 }

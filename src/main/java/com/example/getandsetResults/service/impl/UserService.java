@@ -28,7 +28,7 @@ public class UserService implements IUserService {
 
     @Override
     public UserResponse create(UserRequest request) {
-        User user = new User(request.getSurname(), request.getName(), request.getAge());
+        User user = new User(request.surname(), request.name(), request.age());
         user.setRole(roleRepo.getByName("USER"));
         return UserResponse.convert(userRepo.save(user));
     }
@@ -41,9 +41,9 @@ public class UserService implements IUserService {
     @Override
     public void update(Long id, UserRequest request) {
         var user = userRepo.findById(id).orElseThrow(() -> AppException.userNotFound(id));
-        user.setName(request.getName());
-        user.setSurname(request.getSurname());
-        user.setAge(request.getAge());
+        user.setName(request.name());
+        user.setSurname(request.surname());
+        user.setAge(request.age());
     }
 
     @Override

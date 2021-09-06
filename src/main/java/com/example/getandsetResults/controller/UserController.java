@@ -45,5 +45,4 @@ public class UserController {
                 .orElseThrow(() -> AppException.userNotFound(id));
     }
 
-
 }
