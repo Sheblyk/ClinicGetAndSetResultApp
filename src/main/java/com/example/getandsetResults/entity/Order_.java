@@ -1,5 +1,7 @@
 package com.example.getandsetResults.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -7,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Order_ {
     @Id
     @GeneratedValue
@@ -18,6 +26,8 @@ public class Order_ {
     @Column(nullable = false)
     private Double priceForOrder;
 
+    private boolean finished;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order_")
     private List<OrderHasAnalysis> analysis = new ArrayList<>();
 
@@ -25,41 +35,7 @@ public class Order_ {
     @JoinColumn(name="idUser", nullable=false)
     private User user;
 
-    public Order_(){}
-
-    public Long getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(Long idOrder) {
-        this.idOrder = idOrder;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Double getPriceForOrder() {
-        return priceForOrder;
-    }
-
-    public void setPriceForOrder(Double priceForOrder) {
-        this.priceForOrder = priceForOrder;
-    }
-
-    public Timestamp getTime() {
-        return time;
-    }
-
-    public List<OrderHasAnalysis> getAnalysis() {
-        return analysis;
-    }
-
-    public void setAnalysis(List<OrderHasAnalysis> analysis) {
-        this.analysis = analysis;
-    }
-}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="idClinic", nullable=false)
+    private Clinic clinic;
+   }
