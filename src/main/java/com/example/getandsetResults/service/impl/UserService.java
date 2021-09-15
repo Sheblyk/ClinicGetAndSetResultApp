@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class UserService implements IUserService {
+public class UserService implements IUserService{
 
     private final UserRepository userRepo;
     private final RoleRepository roleRepo;

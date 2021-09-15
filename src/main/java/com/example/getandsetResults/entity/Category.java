@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Data
+//@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -27,4 +27,10 @@ public class Category {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<Analysis> analyses = new ArrayList<>();
 
+    @Override
+    public String toString(){
+        return "id: " + idCategory +
+        " categoryName" + categoryName +
+        " analysis " + analyses.toString();
+    }
 }

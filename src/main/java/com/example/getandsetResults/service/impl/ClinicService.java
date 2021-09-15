@@ -8,6 +8,7 @@ import com.example.getandsetResults.service.IClinicService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ClinicService implements IClinicService {
@@ -28,8 +29,11 @@ public class ClinicService implements IClinicService {
     }
 
     @Override
-    public Clinic find(Long idClinic) {
-        return clinicRepo.findById(idClinic)
-                .orElseThrow(() -> AppException.clinicDoesNotExist(idClinic));
+    public Optional<Clinic> find(Long idClinic) {
+        Optional<Clinic> res = clinicRepo.findById(idClinic);
+        if(res.isEmpty()){
+            throw AppException.clinicDoesNotExist(idClinic);
+        }
+        return clinicRepo.findById(idClinic);
     }
 }

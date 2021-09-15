@@ -27,4 +27,8 @@ public final class AppException {
     public static ResponseStatusException clinicDoesNotExist(Long clinicId) {
         return new ResponseStatusException(HttpStatus.NOT_FOUND, "Clinic with id " + clinicId + " was not found");
     }
+
+    public static ResponseStatusException userDoesNotExist(String email) {
+        return new ResponseStatusException(HttpStatus.NOT_FOUND, "User with id " + email + " was not found");
+    }
 }

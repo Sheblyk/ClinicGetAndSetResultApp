@@ -1,5 +1,6 @@
 package com.example.getandsetResults.service;
 
+import com.example.getandsetResults.entity.User;
 import com.example.getandsetResults.model.user.UserRequest;
 import com.example.getandsetResults.model.user.UserResponse;
 
@@ -13,4 +14,5 @@ public interface IUserService {
     void update(Long id, UserRequest request);
 
     Optional<UserResponse> delete(Long id);
+
 }
