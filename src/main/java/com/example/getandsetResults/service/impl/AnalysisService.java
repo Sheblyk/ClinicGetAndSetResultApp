@@ -1,5 +1,6 @@
 package com.example.getandsetResults.service.impl;
 
+import com.example.getandsetResults.AppException;
 import com.example.getandsetResults.entity.Category;
 import com.example.getandsetResults.model.analysis.AnalysisResponse;
 import com.example.getandsetResults.repository.AnalysisRepository;
@@ -44,7 +45,8 @@ public class AnalysisService implements IAnalysisService, ICategoryService {
 
     @Override
     public List<AnalysisResponse> getAnalysisByCategory(Long id) {
-        return analysisRepo.getAnalysesByCategory(id).
+     var category = categoryRepo.findById(id).orElseThrow(()-> AppException.categoryDoesNotExist(id));
+        return analysisRepo.getAnalysesByIdCategory(category.getIdCategory()).
                 stream().
                 map(AnalysisResponse::convert).
                 collect(Collectors.toList());

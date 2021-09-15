@@ -125,7 +125,13 @@
 			<artifactId>hyph</artifactId>
 			<version>${itextpdf.version}</version>
 		</dependency>
-</dependencies>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>
