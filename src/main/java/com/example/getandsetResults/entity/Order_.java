@@ -1,6 +1,7 @@
 package com.example.getandsetResults.entity;
 
 import lombok.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -26,6 +27,7 @@ public class Order_ {
     @Column(nullable = false)
     private Double priceForOrder;
 
+    @Column(columnDefinition = "bit default false")
     private boolean finished;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order_")
