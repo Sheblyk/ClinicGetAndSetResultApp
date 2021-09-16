@@ -99,7 +99,7 @@ public class ConverterService {
     public byte[] createReport(OrderResponse orderResponse) throws IOException {
 
         int emptyRes = countOfEmptyResult(orderResponse);
-        if (emptyRes > 0 || emptyRes == 0) {
+        if (emptyRes > 0) {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             PdfWriter pdfWriter = new PdfWriter(byteArrayOutputStream);
             PdfDocument pdfDocument = new PdfDocument(pdfWriter);

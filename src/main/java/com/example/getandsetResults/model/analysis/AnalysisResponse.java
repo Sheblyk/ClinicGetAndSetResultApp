@@ -8,7 +8,7 @@ public record AnalysisResponse(Long idAnalysis,
                                Double price,
                                String categoryName) {
 
-    public static AnalysisResponse convert(Analysis analysis){
+    public static AnalysisResponse convert(Analysis analysis) {
         return new AnalysisResponse(analysis.getIdAnalysis(),
                 analysis.getName(),
                 analysis.getDescription(),

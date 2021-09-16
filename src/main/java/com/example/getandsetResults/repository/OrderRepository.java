@@ -1,8 +1,6 @@
 package com.example.getandsetResults.repository;
 
-import com.example.getandsetResults.entity.Clinic;
 import com.example.getandsetResults.entity.Order_;
-import com.example.getandsetResults.model.order.OrderResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

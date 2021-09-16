@@ -16,9 +16,9 @@ class ConverterServiceTest {
     private OrderResponse orderResponse;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         List<AnalysisInOrder> analysis = new ArrayList<>();
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
             AnalysisInOrder item = new AnalysisInOrder(1L + i, "analysis" + i,
                     23.1 * i, "TestD");
             analysis.add(item);

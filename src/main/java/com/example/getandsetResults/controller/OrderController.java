@@ -5,12 +5,9 @@ import com.example.getandsetResults.model.order.AnalysisRequest;
 import com.example.getandsetResults.model.order.OrderResponse;
 import com.example.getandsetResults.service.ConverterService;
 import com.example.getandsetResults.service.IOrderService;
-import com.itextpdf.kernel.pdf.PdfDocument;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -59,12 +56,14 @@ public class OrderController {
 
     @GetMapping("myOrders/download")
     @ResponseBody
-    //@CrossOrigin
+    @CrossOrigin
     public ResponseEntity<InputStreamResource> download(@RequestParam Long idOrder) throws IOException {
       var order = orderService.find(idOrder)
               .orElseThrow(()-> AppException.orderDoesNotExist(idOrder));
       var pdfBytes = converterService.createReport(order);
-      if(pdfBytes.length == 0){
+        if(pdfBytes == null) {
+            return ResponseEntity.status(202).header(HttpHeaders.RETRY_AFTER).body(null);
+        }
             String fileName = "UserInfo.pdf";
             MediaType mediaType = MediaType.parseMediaType("application/pdf");
             File file = new File(fileName);
@@ -77,7 +76,5 @@ public class OrderController {
                     .contentType(mediaType)
                     .contentLength(file.length())
                     .body(resource);
-      }
-      return ResponseEntity.status(203).header(HttpHeaders.RETRY_AFTER).body(null);
     }
 }

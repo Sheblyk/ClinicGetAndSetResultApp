@@ -34,10 +34,10 @@ public class Order_ {
     private List<OrderHasAnalysis> analysis = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="idUser", nullable=false)
+    @JoinColumn(name = "idUser", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="idClinic", nullable=false)
+    @JoinColumn(name = "idClinic", nullable = false)
     private Clinic clinic;
-   }
+}
