@@ -1,9 +1,7 @@
 package com.example.getandsetResults.service.impl;
 
-import com.example.getandsetResults.entity.Analysis;
-import com.example.getandsetResults.entity.Category;
+import com.example.getandsetResults.AppException;
 import com.example.getandsetResults.entity.Clinic;
-import com.example.getandsetResults.model.analysis.AnalysisResponse;
 import com.example.getandsetResults.model.clinic.ClinicResponse;
 import com.example.getandsetResults.repository.ClinicRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,24 +44,16 @@ class ClinicServiceTest {
         verify(clinicRepo, times(1)).findAll();
     }
 
-/*    @Test
+    @Test
     void find() {
         Long presentId = 1L;
         Long absentId = 2L;
         var clinic = new Clinic(1L, "Puska", new ArrayList<>(), new ArrayList<>());
 
-        when(clinicRepo.findById(absentId)).thenReturn(Optional.empty());
+        when(clinicRepo.findById(absentId)).thenThrow(AppException.clinicDoesNotExist(absentId));
         when(clinicRepo.findById(presentId)).thenReturn(Optional.of(clinic));
-
-        Optional<Clinic> absentResponse = clinicService.find(absentId);
-        assertThat(absentResponse).isEmpty();
-
-        verify(clinicRepo).findById(absentId);
 
         Optional<Clinic> presentResponse = clinicService.find(presentId);
         assertThat(presentResponse.get()).isEqualTo(clinic);
-
-        verify(clinicRepo).findById(presentId);
-        verifyNoMoreInteractions(clinicRepo);
-    }*/
+    }
 }

@@ -47,4 +47,11 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="idClinic", nullable=false)
     private Clinic clinic_;
+
+    public User(long presentId, String surname, String name, int i) {
+        this.idUser = presentId;
+        this.surname = surname;
+        this.name = name;
+        this.age = i;
+    }
 }
