@@ -11,15 +11,14 @@ import com.example.getandsetResults.repository.OrderRepository;
 import com.example.getandsetResults.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class OrderService implements IOrderService {
 
     private OrderHasAnalysisRepository orderHasAnalysisRepo;
@@ -33,12 +32,14 @@ public class OrderService implements IOrderService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<OrderResponse> find(Long idOrder) {
         List<OrderHasAnalysis> res = orderHasAnalysisRepo.find(idOrder);
         return Optional.of(OrderResponse.convert(res));
     }
 
     @Override
+    @Transactional
     public void update(AnalysisRequest request) {
         var order = this.find(request.idOrder())
                 .orElseThrow(() -> AppException.orderDoesNotExist(request.idOrder()));
@@ -67,6 +68,7 @@ public class OrderService implements IOrderService {
     //return all orders from definite clinic
     //(usually admin`s workplace) and definite order state
     @Override
+    @Transactional(readOnly = true)
     public List<OrderResponse> findAllByClinicAndFinished(Long clinic, boolean finished) {
 
         List<Order_> orders = orderRepo.findAllByClinicAndFinished(clinic, finished);

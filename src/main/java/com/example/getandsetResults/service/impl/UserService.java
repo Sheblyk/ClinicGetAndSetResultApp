@@ -10,12 +10,11 @@ import com.example.getandsetResults.repository.UserRepository;
 import com.example.getandsetResults.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class UserService implements IUserService{
 
     private final UserRepository userRepo;
@@ -31,6 +30,7 @@ public class UserService implements IUserService{
     }
 
     @Override
+    @Transactional
     public UserResponse create(UserRequest request) {
         User user = new User(request.surname(), request.name(), request.age());
         user.setRole(roleRepo.getByName("USER"));
@@ -39,11 +39,13 @@ public class UserService implements IUserService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<UserResponse> getById(Long id) {
         return userRepo.findById(id).map(UserResponse::convert);
     }
 
     @Override
+    @Transactional
     public void update(Long id, UserRequest request) {
         var user = userRepo.findById(id).orElseThrow(() -> AppException.userNotFound(id));
         user.setName(request.name());
@@ -52,6 +54,7 @@ public class UserService implements IUserService{
     }
 
     @Override
+    @Transactional
     public Optional<UserResponse> delete(Long id) {
         var user = userRepo.findById(id);
         user.ifPresent(userRepo::delete);

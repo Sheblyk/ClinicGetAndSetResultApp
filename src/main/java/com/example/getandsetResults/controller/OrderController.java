@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -64,7 +65,7 @@ public class OrderController {
         if(pdfBytes == null) {
             return ResponseEntity.status(202).header(HttpHeaders.RETRY_AFTER).body(null);
         }
-            String fileName = "UserInfo.pdf";
+            String fileName = order.time().toString().substring(0, 10) + order.surname_() + ".pdf";
             MediaType mediaType = MediaType.parseMediaType("application/pdf");
             File file = new File(fileName);
 
